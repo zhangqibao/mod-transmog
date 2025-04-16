@@ -3,6 +3,8 @@
 #include "DatabaseEnv.h"
 #include "SpellMgr.h"
 #include "Tokenize.h"
+#include "WorldSession.h"
+#include "WorldSessionMgr.h"
 
 Transmogrification* Transmogrification::instance()
 {
@@ -1079,8 +1081,8 @@ void Transmogrification::LoadConfig(bool reload)
 
     if (reload) // dont store presets for nothing
     {
-        SessionMap const& sessions = sWorld->GetAllSessions();
-        for (SessionMap::const_iterator it = sessions.begin(); it != sessions.end(); ++it)
+        WorldSessionMgr::SessionMap const& sessions = sWorldSessionMgr->GetAllSessions();
+        for (WorldSessionMgr::SessionMap::const_iterator it = sessions.begin(); it != sessions.end(); ++it)
         {
             if (Player* player = it->second->GetPlayer())
             {
